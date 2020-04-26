@@ -4,7 +4,7 @@
     <input #input matInput placeholder="" value="" (keyup.enter)="edit(input.value)">
   </mat-form-field>
   <div class="search-button">
-    <button mat-raised-button color="primary" (click)="edit(input.value)" (keyup.enter)="edit(input.value)">SEARCH</button>
+    <button mat-raised-button color="primary" (click)="edit(input.value)" (keyup.enter)="edit(input.value); input.value = ''">SEARCH</button>
   </div>
 </div>
 
