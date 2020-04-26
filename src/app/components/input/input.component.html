@@ -1,0 +1,24 @@
+<div class="floating-input-card mat-elevation-z8">
+  <mat-card class="no-padding">
+    <mat-form-field class="input-card">
+      <mat-label>Title/Name</mat-label>
+      <textarea #nameInput matInput placeholder=""></textarea>
+    </mat-form-field>
+  </mat-card>
+  <mat-form-field class="input-definition">
+<!--    <mat-label>Leave a comment</mat-label>-->
+    <textarea #definitionInput matInput placeholder="Enter Definition Here"></textarea>
+  </mat-form-field>
+  <mat-form-field class="input-code">
+    <mat-label>Code (Optional)</mat-label>
+    <textarea #codeInput matInput placeholder=""></textarea>
+  </mat-form-field>
+    <div class="submit-button">
+      <button mat-raised-button color="primary" (click)="submit(nameInput.value, definitionInput.value, codeInput.value); nameInput.value = '';
+      definitionInput.value = ''; codeInput.value = ''">SUBMIT</button>
+    </div>
+    <div class="alert-text">
+      {{enteredEntry}}
+    </div>
+</div>
+

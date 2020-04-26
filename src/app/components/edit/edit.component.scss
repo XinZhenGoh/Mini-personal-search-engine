@@ -1,0 +1,62 @@
+.floating-input-card {
+  //align-items: center;
+  //justify-content: center;
+  margin: 16px;
+  padding: 1rem;
+  border-radius: 8px;
+  flex: 1 1 auto;
+  font-size: 1.2rem;
+  height: auto;
+  //width: auto;
+  display: inline-block;
+  float: left;
+
+  @media only screen and (min-width: 600px) {
+    width: fit-content;
+    font-size: 1.3rem;
+    display: inline-block;
+  }
+}
+
+.no-padding {
+  padding: 0;
+  margin: 0;
+
+  @media only screen and (min-width: 1000px) {
+    width: 100%;
+  }
+}
+
+.input-card {
+  margin: 0 1rem;
+  width: 90%;
+  padding: 0;
+}
+
+.input-definition {
+  width: 90%;
+  margin: 1rem 1rem 0;
+}
+
+.input-code {
+  width: 90%;
+  margin: 0 1rem 1rem;
+}
+
+.submit-button {
+  float: right;
+  margin: 1rem;
+
+  @media only screen and (min-width: 1000px) {
+    float: left;
+  }
+}
+
+.alert-text {
+  margin: 1rem;
+  color: firebrick;
+}
+
+.text-stretch {
+  height: 250px;
+}

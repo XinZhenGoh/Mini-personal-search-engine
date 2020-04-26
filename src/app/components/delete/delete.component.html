@@ -1,0 +1,16 @@
+<div class="floating-input-card mat-elevation-z8">
+    <mat-form-field class="input-card">
+      <mat-label>Delete item name</mat-label>
+      <textarea #nameInput matInput placeholder=""></textarea>
+    </mat-form-field>
+  <div class="submit-button">
+    <button mat-raised-button color="primary" (click)="delete(nameInput.value); nameInput.value = '';
+      ">CONFIRM</button>
+  </div>
+  <div class="alert-text">
+    {{enteredEntry}}
+  </div>
+</div>
+
+
+
