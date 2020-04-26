@@ -21,7 +21,7 @@ export class ResultPageComponent implements OnInit {
 
   search(input: string) {
     if (input) {
-      this.data = this.db.collection('codeConcepts', ref => ref.where('key', '>=', input.toLowerCase()).where('key', '<=', input + '\uf8ff')).valueChanges();
+      this.data = this.db.collection('codeConcepts', ref => ref.where('key', '>=', input.toLowerCase()).where('key', '<=', input.toLowerCase() + '\uf8ff')).valueChanges();
     }
     else {
       this.data = this.db.collection('codeConcepts', ref => ref.orderBy('date', 'desc').limit(30)).valueChanges();
