@@ -11,6 +11,10 @@
   display: inline-block;
 
   @media only screen and (min-width: 600px) {
+    width: 90%;
+  }
+
+  @media only screen and (min-width: 1000px) {
     width: 60%;
     font-size: 1.3rem;
     display: inline-block;
@@ -35,6 +39,12 @@
 .input-definition {
   width: 90%;
   margin: 1rem 1rem 0;
+}
+
+.definition-expand {
+  @media only screen and (min-width: 1000px) {
+    height: 150px;
+  }
 }
 
 .input-code {
