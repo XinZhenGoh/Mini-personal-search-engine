@@ -19,7 +19,7 @@ export class EditComponent implements OnInit {
   }
 
   edit(keyIn: string) {
-    this.data = this.db.collection('codeConcepts', ref => ref.where('key', '==', keyIn)).valueChanges();
+    this.data = this.db.collection('codeConcepts', ref => ref.where('key', '==', keyIn.toLowerCase())).valueChanges();
   }
 
   submit(nameIn: string, valueIn: string, codeIn: string) {
@@ -33,7 +33,7 @@ export class EditComponent implements OnInit {
       index: currentDate.getMinutes()
     };
 
-    const deleteList = this.db.collection('codeConcepts', ref => ref.where('key', '==', nameIn));
+    const deleteList = this.db.collection('codeConcepts', ref => ref.where('key', '==', nameIn.toLowerCase()));
     deleteList.get().subscribe(delitems => delitems.forEach(doc => doc.ref.delete()));
 
     this.db.collection('codeConcepts').add(dataset);

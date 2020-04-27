@@ -14,7 +14,7 @@
   @media only screen and (min-width: 600px) {
     font-size: 1.3rem;
     display: inline-grid;
-    max-width: 500px;
+    max-width: 600px;
     width: 100%;
   }
 
@@ -84,4 +84,8 @@
 .no-space {
   padding: 0;
   margin: -1rem 0;
+}
+
+.code-style{
+  margin-left: -3rem;
 }

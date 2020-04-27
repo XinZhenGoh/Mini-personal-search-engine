@@ -20,7 +20,7 @@ export class DeleteComponent implements OnInit {
   }
 
   delete(keyIn: string) {
-    const deletelist = this.db.collection('codeConcepts', ref => ref.where('key', '==', keyIn));
+    const deletelist = this.db.collection('codeConcepts', ref => ref.where('key', '==', keyIn.toLowerCase()));
     deletelist.get().subscribe(delitems => delitems.forEach(doc => doc.ref.delete()));
     this.enteredEntry = 'Succesfully deleted key : ' + keyIn;
   }

@@ -14,7 +14,7 @@
   <div *ngIf="card.value" class="definition">{{card.value}}</div>
   <div class="code" *ngIf="card.code">
     <pre class="no-space">
-      <div [innerHTML]="card.code"></div>
+      <code [innerText]="card.code" class="code-style"></code>
     </pre>
   </div>
 </div>
