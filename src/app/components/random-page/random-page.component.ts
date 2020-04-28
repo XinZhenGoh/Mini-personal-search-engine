@@ -1,22 +1,21 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
 import {DataModel} from '../../models/data.model';
 import {AngularFirestore} from 'angularfire2/firestore';
 
 @Component({
-  selector: 'app-result-page',
-  templateUrl: './result-page.component.html',
-  styleUrls: ['./result-page.component.scss']
+  selector: 'app-random-page',
+  templateUrl: './random-page.component.html',
+  styleUrls: ['./random-page.component.scss']
 })
-export class ResultPageComponent implements OnInit {
+export class RandomPageComponent implements OnInit {
   data: Observable<DataModel[]>;
 
   constructor(public db: AngularFirestore) {
   }
 
   ngOnInit(): void {
-    this.data = this.db.collection('codeConcepts', ref => ref.orderBy('date', 'desc').limit(30)).valueChanges();
+    this.data = this.db.collection('codeConcepts', ref => ref.orderBy('date', 'desc').limit(50)).valueChanges();
   }
 
   search(input: string) {
@@ -24,8 +23,12 @@ export class ResultPageComponent implements OnInit {
       this.data = this.db.collection('codeConcepts', ref => ref.where('key', '>=', input.toLowerCase()).where('key', '<=', input.toLowerCase() + '\uf8ff')).valueChanges();
     }
     else {
-      this.data = this.db.collection('codeConcepts', ref => ref.orderBy('date', 'desc').limit(50)).valueChanges();
+      this.data = this.db.collection('codeConcepts', ref => ref.where('index', '==', this.getRandomInt(60)).limit(50)).valueChanges();
     }
+  }
+
+  getRandomInt(input: number): number {
+    return Math.floor(Math.random() * Math.floor(input));
   }
 
   capitalize(input: string) {

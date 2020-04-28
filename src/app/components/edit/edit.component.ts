@@ -11,6 +11,7 @@ import {AngularFirestore} from 'angularfire2/firestore';
 export class EditComponent implements OnInit {
   data: Observable<DataModel[]>;
   enteredEntry: string;
+  searchedKey: string;
 
   constructor(public db: AngularFirestore) { }
 
@@ -19,10 +20,12 @@ export class EditComponent implements OnInit {
   }
 
   edit(keyIn: string) {
+    this.searchedKey = keyIn;
     this.data = this.db.collection('codeConcepts', ref => ref.where('key', '==', keyIn.toLowerCase())).valueChanges();
   }
 
   submit(nameIn: string, valueIn: string, codeIn: string) {
+    console.log("change value = "+nameIn);
     const currentDate = new Date();
     const dataset = {
       key: nameIn.toLowerCase(),
@@ -33,8 +36,8 @@ export class EditComponent implements OnInit {
       index: currentDate.getMinutes()
     };
 
-    const deleteList = this.db.collection('codeConcepts', ref => ref.where('key', '==', nameIn.toLowerCase()));
-    deleteList.get().subscribe(delitems => delitems.forEach(doc => doc.ref.delete()));
+      const deleteList = this.db.collection('codeConcepts', ref => ref.where('key', '==', this.searchedKey.toLowerCase()));
+      deleteList.get().subscribe(delitems => delitems.forEach(doc => doc.ref.delete()));
 
     this.db.collection('codeConcepts').add(dataset);
     this.enteredEntry = 'Record updated: ' + nameIn;

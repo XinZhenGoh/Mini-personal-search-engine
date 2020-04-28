@@ -1,0 +1,21 @@
+<div>
+  <mat-form-field class="search-input">
+    <mat-label class="random-text">Leave blank to get random cards</mat-label>
+    <input #input matInput placeholder="" value="" (keyup.enter)="search(input.value)">
+  </mat-form-field>
+  <div class="search-button">
+    <button mat-raised-button color="primary" (click)="search(input.value)" (keyup.enter)="search(input.value)">Search
+    </button>
+  </div>
+</div>
+
+<div class="floating-card mat-elevation-z8" *ngFor="let card of data | async">
+  <mat-card *ngIf="card.key" class="key-card">{{capitalize(card.key)}}</mat-card>
+  <!--  <mat-card class="key-card-definition">a programmer hides all but the relevant data about an object in order to reduce complexity and increase efficiency.</mat-card>-->
+  <div *ngIf="card.value" class="definition">{{card.value}}</div>
+  <div class="code" *ngIf="card.code">
+    <pre class="no-space">
+      <code [innerText]="card.code" class="code-style"></code>
+    </pre>
+  </div>
+</div>

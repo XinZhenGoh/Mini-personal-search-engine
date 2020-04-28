@@ -23,6 +23,7 @@ import {environment} from '../environments/environment';
 import { AdminTabComponent } from './tab/admin-tab/admin-tab.component';
 import { DeleteComponent } from './components/delete/delete.component';
 import { EditComponent } from './components/edit/edit.component';
+import { RandomPageComponent } from './components/random-page/random-page.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { EditComponent } from './components/edit/edit.component';
     GeneralResultPageComponent,
     AdminTabComponent,
     DeleteComponent,
-    EditComponent
+    EditComponent,
+    RandomPageComponent
   ],
   imports: [
     BrowserModule,

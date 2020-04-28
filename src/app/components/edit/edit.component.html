@@ -24,7 +24,7 @@
     <textarea #codeInput matInput value="{{card.code}}"></textarea>
   </mat-form-field>
   <div class="submit-button">
-        <button mat-raised-button color="primary" (click)="submit(nameInput.value, definitionInput.value, codeInput.value)">SUBMIT</button>
+        <button mat-raised-button color="primary" (click)="submit(nameInput.value, definitionInput.value, codeInput.value); edit(nameInput.value); input.value = ''">SUBMIT</button>
   </div>
   <div class="alert-text">
     {{enteredEntry}}
