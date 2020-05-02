@@ -5,4 +5,5 @@ export interface DataModel{
   code ?: string;
   date ?: Date;
   index ?: number;
+  keys ?: string[];
 }

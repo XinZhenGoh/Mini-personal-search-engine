@@ -20,19 +20,25 @@ export class InputComponent implements OnInit {
 
   submit(nameIn: string, valueIn: string, codeIn: string) {
     const currentDate = new Date();
+    const nameInArray = nameIn.split(' ');
+    const keyArr: string[] = [];
+
+    nameInArray.forEach(value => {
+      keyArr.push(value);
+    });
+
     const dataset = {
       key: nameIn.toLowerCase(),
       value: valueIn,
       type: '',
       code: codeIn,
       date: currentDate,
-      index: currentDate.getMinutes()
+      index: currentDate.getMinutes(),
+      keys: keyArr
     };
 
     if (nameIn){
-      this.db.collection('codeConcepts').add(dataset);
-
-      // (document.getElementById('nameInput') as HTMLInputElement).value = null;
+      this.db.collection('dataHouse').add(dataset);
 
       this.enteredEntry = 'Record inserted: ' + nameIn;
     }

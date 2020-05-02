@@ -15,15 +15,15 @@ export class RandomPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.data = this.db.collection('codeConcepts', ref => ref.orderBy('date', 'desc').limit(50)).valueChanges();
+    this.data = this.db.collection('dataHouse', ref => ref.orderBy('date', 'desc').limit(50)).valueChanges();
   }
 
   search(input: string) {
     if (input) {
-      this.data = this.db.collection('codeConcepts', ref => ref.where('key', '>=', input.toLowerCase()).where('key', '<=', input.toLowerCase() + '\uf8ff')).valueChanges();
+      this.data = this.db.collection('dataHouse', ref => ref.where('key', '>=', input.toLowerCase()).where('key', '<=', input.toLowerCase() + '\uf8ff')).valueChanges();
     }
     else {
-      this.data = this.db.collection('codeConcepts', ref => ref.where('index', '==', this.getRandomInt(60)).limit(50)).valueChanges();
+      this.data = this.db.collection('dataHouse', ref => ref.where('index', '==', this.getRandomInt(60)).limit(50)).valueChanges();
     }
   }
 

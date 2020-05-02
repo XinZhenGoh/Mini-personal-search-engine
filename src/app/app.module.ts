@@ -14,7 +14,6 @@ import {MatCardModule} from '@angular/material/card';
 import { InputComponent } from './components/input/input.component';
 import {NgMatSearchBarModule} from 'ng-mat-search-bar';
 import {MatButtonModule} from '@angular/material/button';
-import { GeneralResultPageComponent } from './components/general-result-page/general-result-page.component';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireStorageModule } from 'angularfire2/storage';
@@ -31,7 +30,6 @@ import { RandomPageComponent } from './components/random-page/random-page.compon
     TabComponent,
     ResultPageComponent,
     InputComponent,
-    GeneralResultPageComponent,
     AdminTabComponent,
     DeleteComponent,
     EditComponent,

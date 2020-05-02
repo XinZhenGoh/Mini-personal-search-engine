@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {DataModel} from '../../models/data.model';
 import {AngularFirestore} from 'angularfire2/firestore';
@@ -13,7 +13,8 @@ export class EditComponent implements OnInit {
   enteredEntry: string;
   searchedKey: string;
 
-  constructor(public db: AngularFirestore) { }
+  constructor(public db: AngularFirestore) {
+  }
 
   ngOnInit(): void {
 
@@ -21,26 +22,34 @@ export class EditComponent implements OnInit {
 
   edit(keyIn: string) {
     this.searchedKey = keyIn;
-    this.data = this.db.collection('codeConcepts', ref => ref.where('key', '==', keyIn.toLowerCase())).valueChanges();
+    this.data = this.db.collection('dataHouse', ref => ref.where('key', '==', keyIn.toLowerCase())).valueChanges();
   }
 
   submit(nameIn: string, valueIn: string, codeIn: string) {
-    console.log("change value = "+nameIn);
     const currentDate = new Date();
+    const nameInArray = nameIn.split(' ');
+    const keyArr: string[] = [];
+
+    nameInArray.forEach(value => {
+      keyArr.push(value);
+    });
+
     const dataset = {
       key: nameIn.toLowerCase(),
       value: valueIn,
       type: '',
       code: codeIn,
       date: currentDate,
-      index: currentDate.getMinutes()
+      index: currentDate.getMinutes(),
+      keys: keyArr
     };
 
-      const deleteList = this.db.collection('codeConcepts', ref => ref.where('key', '==', this.searchedKey.toLowerCase()));
-      deleteList.get().subscribe(delitems => delitems.forEach(doc => doc.ref.delete()));
+    const deleteList = this.db.collection('dataHouse', ref => ref.where('key', '==', this.searchedKey.toLowerCase()));
+    console.log(deleteList);
+    deleteList.get().subscribe(delList => delList.forEach(doc => doc.ref.delete()));
 
-    this.db.collection('codeConcepts').add(dataset);
+    this.db.collection('dataHouse').add(dataset);
+    this.db.collection('editBackup').add(dataset);
     this.enteredEntry = 'Record updated: ' + nameIn;
   }
-
 }
