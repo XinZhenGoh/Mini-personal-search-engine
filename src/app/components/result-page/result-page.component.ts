@@ -31,7 +31,8 @@ export class ResultPageComponent implements OnInit {
 
   searchKeyArray(input: string) {
     if (input) {
-      const splitted = input.split(" ");
+      const formatted = input.replace('-',' ').replace(',',' ');
+      const splitted = formatted.split(' ');
       console.log(splitted.length);
 
       switch(splitted.length) {

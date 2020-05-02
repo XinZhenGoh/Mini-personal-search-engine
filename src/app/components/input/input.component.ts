@@ -20,7 +20,9 @@ export class InputComponent implements OnInit {
 
   submit(nameIn: string, valueIn: string, codeIn: string) {
     const currentDate = new Date();
-    const nameInArray = nameIn.split(' ');
+    const formatted = nameIn.replace(/,/g,' ').replace(/-/g,' ').replace('(', ' ').replace(')',' ');
+    console.log(formatted);
+    const nameInArray = formatted.split(' ');
     const keyArr: string[] = [];
 
     nameInArray.forEach(value => {
@@ -40,7 +42,7 @@ export class InputComponent implements OnInit {
     if (nameIn){
       this.db.collection('dataHouse').add(dataset);
 
-      this.enteredEntry = 'Record inserted: ' + nameIn;
+      this.enteredEntry = 'Record inserted(Formatted): ' + formatted;
     }
     else {
       this.enteredEntry = 'Record failed to insert';

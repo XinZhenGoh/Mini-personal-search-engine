@@ -27,7 +27,9 @@ export class EditComponent implements OnInit {
 
   submit(nameIn: string, valueIn: string, codeIn: string) {
     const currentDate = new Date();
-    const nameInArray = nameIn.split(' ');
+    const formatted = nameIn.replace(/,/g,' ').replace(/-/g,' ').replace('(', ' ').replace(')',' ');
+    console.log(formatted);
+    const nameInArray = formatted.split(' ');
     const keyArr: string[] = [];
 
     nameInArray.forEach(value => {
@@ -50,6 +52,6 @@ export class EditComponent implements OnInit {
 
     this.db.collection('dataHouse').add(dataset);
     this.db.collection('editBackup').add(dataset);
-    this.enteredEntry = 'Record updated: ' + nameIn;
+    this.enteredEntry = 'Record formatted & updated: ' + formatted;
   }
 }
