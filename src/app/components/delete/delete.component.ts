@@ -20,7 +20,9 @@ export class DeleteComponent implements OnInit {
   }
 
   delete(keyIn: string) {
-    const deletelist = this.db.collection('dataHouse', ref => ref.where('key', '==', keyIn.toLowerCase()));
+    //remove trailing space
+    const trimmed = keyIn.replace(/\s+$/, '');
+    const deletelist = this.db.collection('dataHouse', ref => ref.where('key', '==', trimmed));
     deletelist.get().subscribe(delitems => delitems.forEach(doc => doc.ref.delete()));
     this.enteredEntry = 'Succesfully deleted key : ' + keyIn;
   }

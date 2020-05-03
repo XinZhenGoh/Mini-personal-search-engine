@@ -1,10 +1,10 @@
 <div>
   <mat-form-field class="search-input">
     <mat-label class="random-text">Leave blank to get random cards</mat-label>
-    <input #input matInput placeholder="" value="" (keyup.enter)="search(input.value)">
+    <input #input matInput placeholder="" value="" (keyup.enter)="searchKeyArray(input.value)">
   </mat-form-field>
   <div class="search-button">
-    <button mat-raised-button color="primary" (click)="search(input.value)" (keyup.enter)="search(input.value)">Search
+    <button mat-raised-button color="primary" (click)="searchKeyArray(input.value)" (keyup.enter)="searchKeyArray(input.value)">search
     </button>
   </div>
 </div>

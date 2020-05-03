@@ -22,12 +22,12 @@ export class EditComponent implements OnInit {
 
   edit(keyIn: string) {
     this.searchedKey = keyIn;
-    this.data = this.db.collection('dataHouse', ref => ref.where('key', '==', keyIn.toLowerCase())).valueChanges();
+    this.data = this.db.collection('dataHouse', ref => ref.where('key', '==', keyIn)).valueChanges();
   }
 
   submit(nameIn: string, valueIn: string, codeIn: string) {
     const currentDate = new Date();
-    const formatted = nameIn.replace(/,/g,' ').replace(/-/g,' ').replace('(', ' ').replace(')',' ');
+    const formatted = nameIn.toLowerCase().replace(/,/g,' ').replace(/-/g,' ').replace('(', ' ').replace(')',' ');
     console.log(formatted);
     const nameInArray = formatted.split(' ');
     const keyArr: string[] = [];
@@ -37,7 +37,7 @@ export class EditComponent implements OnInit {
     });
 
     const dataset = {
-      key: nameIn.toLowerCase(),
+      key: nameIn,
       value: valueIn,
       type: '',
       code: codeIn,

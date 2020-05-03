@@ -20,7 +20,7 @@ export class InputComponent implements OnInit {
 
   submit(nameIn: string, valueIn: string, codeIn: string) {
     const currentDate = new Date();
-    const formatted = nameIn.replace(/,/g,' ').replace(/-/g,' ').replace('(', ' ').replace(')',' ');
+    const formatted = nameIn.toLowerCase().replace(/\s+$/, '').replace(/,/g,' ').replace(/-/g,' ').replace('(', ' ').replace(')',' ');
     console.log(formatted);
     const nameInArray = formatted.split(' ');
     const keyArr: string[] = [];
@@ -30,7 +30,7 @@ export class InputComponent implements OnInit {
     });
 
     const dataset = {
-      key: nameIn.toLowerCase(),
+      key: nameIn,
       value: valueIn,
       type: '',
       code: codeIn,
