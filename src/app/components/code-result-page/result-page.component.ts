@@ -11,12 +11,52 @@ import {AngularFirestore} from 'angularfire2/firestore';
 })
 export class ResultPageComponent implements OnInit {
   data: Observable<DataModel[]>;
+  editing: boolean = false;
+  enteredEntry: string = '';
+  searchedKey: string;
 
   constructor(public db: AngularFirestore) {
   }
 
   ngOnInit(): void {
     this.data = this.db.collection('dataHouse', ref => ref.orderBy('date', 'desc').limit(30)).valueChanges();
+  }
+
+  edit(keyIn: string) {
+    this.searchedKey = keyIn;
+    this.editing = true;
+    this.data = this.db.collection('dataHouse', ref => ref.where('key', '==', keyIn)).valueChanges();
+  }
+
+  submit(nameIn: string, valueIn: string, codeIn: string) {
+    this.editing = false;
+    const currentDate = new Date();
+    const formatted = nameIn.toLowerCase().replace(/,/g,' ').replace(/-/g,' ').replace('(', ' ').replace(')',' ');
+    console.log(formatted);
+    const nameInArray = formatted.split(' ');
+    const keyArr: string[] = [];
+
+    nameInArray.forEach(value => {
+      keyArr.push(value);
+    });
+
+    const dataset = {
+      key: nameIn,
+      value: valueIn,
+      type: '',
+      code: codeIn,
+      date: currentDate,
+      index: currentDate.getMinutes(),
+      keys: keyArr
+    };
+
+    const deleteList = this.db.collection('dataHouse', ref => ref.where('key', '==', this.searchedKey.toLowerCase()));
+    console.log(deleteList);
+    deleteList.get().subscribe(delList => delList.forEach(doc => doc.ref.delete()));
+
+    this.db.collection('dataHouse').add(dataset);
+    this.db.collection('editBackup').add(dataset);
+    this.enteredEntry = 'Record formatted & updated: ' + formatted;
   }
 
   //deprecated
@@ -30,6 +70,7 @@ export class ResultPageComponent implements OnInit {
   }
 
   searchKeyArray(input: string) {
+    this.editing = false;
     if (input) {
       const formatted = input.replace('-',' ').replace(',',' ');
       const splitted = formatted.split(' ');
@@ -71,4 +112,5 @@ export class ResultPageComponent implements OnInit {
   capitalize(input: string) {
     return input.substring(0, 1).toUpperCase() + input.substring(1);
   }
+
 }

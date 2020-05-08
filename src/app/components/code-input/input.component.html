@@ -6,12 +6,11 @@
     </mat-form-field>
   </mat-card>
   <mat-form-field class="input-definition">
-<!--    <mat-label>Leave a comment</mat-label>-->
     <textarea class="definition-expand" #definitionInput matInput placeholder="Enter Definition Here"></textarea>
   </mat-form-field>
   <mat-form-field class="input-code">
     <mat-label>Code (Optional)</mat-label>
-    <textarea #codeInput matInput placeholder=""></textarea>
+    <textarea class="definition-expand"#codeInput matInput placeholder=""></textarea>
   </mat-form-field>
     <div class="submit-button">
       <button mat-raised-button color="primary" (click)="submit(nameInput.value, definitionInput.value, codeInput.value); nameInput.value = '';

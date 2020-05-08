@@ -1,0 +1,50 @@
+<div>
+  <mat-form-field class="search-input">
+    <input #input matInput placeholder="" value="" (keyup.enter)="searchKeyArray(input.value)">
+  </mat-form-field>
+  <div class="search-button">
+    <button mat-raised-button color="secondary" (click)="searchKeyArray(input.value)" (keyup.enter)="searchKeyArray(input.value)">SEARCH</button>
+  </div>
+</div>
+
+<ng-container *ngIf="!editing">
+  <div class="floating-card mat-elevation-z8" *ngFor="let card of data | async">
+    <!--  <mat-card *ngIf="card.key" class="key-card">{{capitalize(card.key)}}</mat-card>-->
+    <button mat-raised-button class="key-button" (click)="edit(card.key)">{{capitalize(card.key)}}</button>
+    <div *ngIf="card.value" class="definition">{{card.value}}</div>
+    <div class="code" *ngIf="card.code">
+    <pre class="no-space">
+      <code [innerText]="card.code" class="code-style"></code>
+    </pre>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="editing">
+  <div class="floating-input-card edit-result mat-elevation-z8" *ngFor="let card of data | async">
+    <mat-card class="no-padding">
+      <mat-form-field class="input-card">
+        <textarea #nameInput matInput value="{{card.key}}"></textarea>
+      </mat-form-field>
+    </mat-card>
+    <mat-form-field class="input-definition">
+      <textarea class="text-stretch" #definitionInput matInput value="{{card.value}}"></textarea>
+    </mat-form-field>
+    <mat-form-field class="input-code">
+      <mat-label>Code (Optional)</mat-label>
+      <textarea class="text-stretch" #codeInput matInput value="{{card.code}}"></textarea>
+    </mat-form-field>
+    <div class="cancel-button">
+      <button mat-raised-button (click)="searchKeyArray(input.value)">CANCEL</button>
+    </div>
+    <div class="submit-button">
+      <button mat-raised-button color="primary" (click)="submit(nameInput.value, definitionInput.value, codeInput.value); edit(nameInput.value); input.value = ''">SUBMIT</button>
+    </div>
+    <div class="alert-text">
+      {{enteredEntry}}
+    </div>
+  </div>
+</ng-container>
+
+
+

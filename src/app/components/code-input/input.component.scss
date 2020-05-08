@@ -36,15 +36,15 @@
   padding: 0;
 }
 
+.definition-expand {
+  @media only screen and (min-width: 1000px) {
+    height: 120px;
+  }
+}
+
 .input-definition {
   width: 90%;
   margin: 1rem 1rem 0;
-}
-
-.definition-expand {
-  @media only screen and (min-width: 1000px) {
-    height: 150px;
-  }
 }
 
 .input-code {

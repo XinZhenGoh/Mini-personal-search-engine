@@ -11,12 +11,10 @@
 <div class="floating-input-card edit-result mat-elevation-z8" *ngFor="let card of data | async">
   <mat-card class="no-padding">
     <mat-form-field class="input-card">
-      <!--      <mat-label>Title/Name</mat-label>-->
       <textarea #nameInput matInput value="{{card.key}}"></textarea>
     </mat-form-field>
   </mat-card>
   <mat-form-field class="input-definition">
-    <!--    <mat-label>Leave a comment</mat-label>-->
     <textarea class="text-stretch" #definitionInput matInput value="{{card.value}}"></textarea>
   </mat-form-field>
   <mat-form-field class="input-code">

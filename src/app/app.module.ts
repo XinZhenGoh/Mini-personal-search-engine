@@ -7,11 +7,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TabComponent} from './tab/tab/tab.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {ResultPageComponent} from './components/result-page/result-page.component';
+import {ResultPageComponent} from './components/code-result-page/result-page.component';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule} from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
-import { InputComponent } from './components/input/input.component';
+import { InputComponent } from './components/code-input/input.component';
 import {NgMatSearchBarModule} from 'ng-mat-search-bar';
 import {MatButtonModule} from '@angular/material/button';
 import { AngularFireModule } from 'angularfire2';
@@ -20,9 +20,8 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import {environment} from '../environments/environment';
 import { AdminTabComponent } from './tab/admin-tab/admin-tab.component';
-import { DeleteComponent } from './components/delete/delete.component';
-import { EditComponent } from './components/edit/edit.component';
-import { RandomPageComponent } from './components/random-page/random-page.component';
+import { DeleteComponent } from './components/code-delete/delete.component';
+import { RandomPageComponent } from './components/code-random/random-page.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +31,6 @@ import { RandomPageComponent } from './components/random-page/random-page.compon
     InputComponent,
     AdminTabComponent,
     DeleteComponent,
-    EditComponent,
     RandomPageComponent
   ],
   imports: [
