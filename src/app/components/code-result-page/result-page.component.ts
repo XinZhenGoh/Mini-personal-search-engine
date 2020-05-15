@@ -50,8 +50,7 @@ export class ResultPageComponent implements OnInit {
       keys: keyArr
     };
 
-    const deleteList = this.db.collection('dataHouse', ref => ref.where('key', '==', this.searchedKey.toLowerCase()));
-    console.log(deleteList);
+    const deleteList = this.db.collection('dataHouse', ref => ref.where('key', '==', this.searchedKey));
     deleteList.get().subscribe(delList => delList.forEach(doc => doc.ref.delete()));
 
     this.db.collection('dataHouse').add(dataset);
